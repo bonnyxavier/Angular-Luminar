@@ -4,9 +4,9 @@
         <div class="col-4"></div>
         <div class="col-4" id=entryelements>
 
-            <input type="text" id="id_accountnumber" [value]="accno" (change)="accnoChange($event)"placeholder="Account Number">
-            <input type="password" id="id_pass" (change)="pswdChange($event)" placeholder="Password">
-            <button class="btn btn-success" (click)="login()">Login</button>
+            <input type="text" id="id_accountnumber" [value]="accno" #acno placeholder="Account Number">
+            <input type="password" id="id_pass" #pswd placeholder="Password">
+            <button class="btn btn-success" (click)="login(acno,pswd)">Login</button>
         </div>
          <div class="col-4"></div>
     </div>
