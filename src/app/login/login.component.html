@@ -1,0 +1,13 @@
+<div class="container">
+    <h1>{{stringInterpolation}}</h1>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4" id=entryelements>
+
+            <input type="text" id="id_accountnumber" [value]="accno" (change)="accnoChange($event)"placeholder="Account Number">
+            <input type="password" id="id_pass" (change)="pswdChange($event)" placeholder="Password">
+            <button class="btn btn-success" (click)="login()">Login</button>
+        </div>
+         <div class="col-4"></div>
+    </div>
+</div>
