@@ -1,1 +1,18 @@
-<p>register works!</p>
+<div class="container">
+    <h1>Registration Page</h1>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4" id=entryelements>
+            <form (ngSubmit)="register()">
+                <input type="text" id="id_accountnumber" name="uname" [(ngModel)]="username" placeholder="Username">
+                <input type="text" id="id_accountnumber" name="accountno" [(ngModel)]="accno"
+                    placeholder="Account Number">
+                <input type="password" id="id_pass" name="pswd" [(ngModel)]="pswd" placeholder="Password">
+                
+                <button type="submit" class="btn btn-success">Register</button>
+
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

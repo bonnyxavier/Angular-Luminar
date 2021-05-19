@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
     stringInterpolation="Welcome To YES Bank"
-    accno="Enter Account Number Here"
+    accno=""
     pswd=""
 
 
-    accountDetails:any = {
-      1000: { acno: 1000, actype: "savings", username: "userone", password: "userone", balance: 50000 },
-      1001: { acno: 1001, actype: "savings", username: "usertwo", password: "usertwo", balance: 5000 },
-      1002: { acno: 1002, actype: "current", username: "userthree", password: "userthree", balance: 10000 },
-      1003: { acno: 1003, actype: "current", username: "userfour", password: "userfour", balance: 6000 }
-  }
-
-
-  constructor(private router:Router) { }
+  constructor(private router:Router, private dataService:DataService) { }
 
   ngOnInit(): void {
   }
@@ -40,28 +33,23 @@ export class LoginComponent implements OnInit {
   login(){
     var acno= this.accno;
     var pswd= this.pswd;
-    var users = this.accountDetails;
-    if (acno in users) {
-      if(pswd == users[acno].password){
-          alert("Login Successful")
-          this.router.navigateByUrl("dashboard")
-          return 1;
-      }
-      else {
-          alert("Incorrect Password")
-          return 0;
-      }
+    
+    const result = this.dataService.login(acno,pswd)
+
+  if(result){
+    alert("Login Successful!");
+    this.router.navigateByUrl("dashboard");
   }
 
-  else {
-      alert("Incorrect Account")
-      return -1;
+  else{
+    alert("Incorrect Data")
   }
 
-  }
+}
 
 
-  register(){
-    this.router.navigateByUrl("register")
-  }
+register(){
+  this.router.navigateByUrl("register")
+}
+
 }

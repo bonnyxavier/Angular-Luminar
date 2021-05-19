@@ -4,10 +4,15 @@
         <div class="col-4"></div>
         <div class="col-4" id=entryelements>
 
-            <input type="text" id="id_accountnumber" [value]="accno" [(ngModel)]="accno" placeholder="Account Number">
-            <input type="password" id="id_pass" [(ngModel)]="pswd" placeholder="Password">
-            <button class="btn btn-success" (click)="login()">Login</button>
-            <button class="btn btn-success" (click)="register()">Register</button>
+            <form (ngSubmit)="login()">
+           
+            <input type="text" id="id_accountnumber" name="accountnumber" [(ngModel)]="accno" placeholder="Account Number">
+            <input type="password" id="id_pass" name="pswd" [(ngModel)]="pswd" placeholder="Password">
+            <button type="submit" class="btn btn-success">Login</button>
+            <button type="button" class="btn btn-success" (click)="register()">Register</button>
+
+
+            </form>
         </div>
          <div class="col-4"></div>
     </div>

@@ -1,1 +1,34 @@
-<p>dashboard works!</p>
+
+
+<div class="container">
+
+<h2>Withdraw</h2>
+<form (ngSubmit)="withdraw()">
+
+            <input type="text" id="id_accountnumber" [(ngModel)]="dAccno" name="accountnumber" placeholder="Account Number">
+            <input type="password" id="id_pass" [(ngModel)]="dPswd" name="password" placeholder="Password">
+            <input type="text" id="id-amount" [(ngModel)]="dAmount" name="amount" placeholder="id-amount">
+            <button type="submit" class="btn btn-success" value="withdrawal">Withdraw</button>
+
+</form>
+
+<br>
+<br>
+<br>
+
+<h2>Deposit</h2>
+
+<form (ngSubmit)="deposit()">
+
+    <input type="text" id="id-accountnumber" [(ngModel)]="dAccno" name="accountnumber" placeholder="Account Number">
+    <input type="password" id="id-pass" [(ngModel)]="dPswd" name="password" placeholder="Password">
+    <input type="text" id="id-amount" [(ngModel)]="dAmount" name="amount" placeholder="amount">
+    <button type="submit" class="btn btn-success" value="withdrawal">Deposit</button>
+
+</form>
+
+
+
+
+
+</div>
