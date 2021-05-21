@@ -3,11 +3,13 @@
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4" id=entryelements>
-            <form (ngSubmit)="register()">
-                <input type="text" id="id_accountnumber" name="uname" [(ngModel)]="username" placeholder="Username">
-                <input type="text" id="id_accountnumber" name="accountno" [(ngModel)]="accno"
-                    placeholder="Account Number">
-                <input type="password" id="id_pass" name="pswd" [(ngModel)]="pswd" placeholder="Password">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <input type="text" id="id_accountnumber" name="uname" formControlName="username" placeholder="Username">
+                <div *ngIf="(registerForm.get('username')?.touched || registerForm.get('username')?.dirty) && registerForm.get('username')?.errors" class="error">Invalid Username</div>
+                <input type="text" id="id_accountnumber" name="accountno" formControlName="accno" placeholder="Account Number">
+                <div *ngIf="(registerForm.get('accno')?.touched || registerForm.get('accno')?.dirty) && registerForm.get('accno')?.errors" class="error">Invalid Acno</div>
+                <input type="password" id="id_pass" name="pswd" formControlName="pswd" placeholder="Password">
+                <div *ngIf="(registerForm.get('pswd')?.touched || registerForm.get('pswd')?.dirty) && registerForm.get('pswd')?.errors" class="error">Invalid Pswd</div>
                 
                 <button type="submit" class="btn btn-success">Register</button>
 

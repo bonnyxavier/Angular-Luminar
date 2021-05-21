@@ -4,10 +4,12 @@
         <div class="col-4"></div>
         <div class="col-4" id=entryelements>
 
-            <form (ngSubmit)="login()">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
            
-            <input type="text" id="id_accountnumber" name="accountnumber" [(ngModel)]="accno" placeholder="Account Number">
-            <input type="password" id="id_pass" name="pswd" [(ngModel)]="pswd" placeholder="Password">
+            <input type="text" id="id_accountnumber" name="accountnumber" formControlName="accno" placeholder="Account Number">
+            <div *ngIf="(loginForm.get('accno')?.touched || loginForm.get('accno')?.dirty) && loginForm.get('accno')?.errors" class="error">Invalid Account Number</div>
+            <input type="password" id="id_pass" name="pswd" formControlName="pswd" placeholder="Password">
+            <div *ngIf="(loginForm.get('pswd')?.touched || loginForm.get('pswd')?.dirty) && loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
             <button type="submit" class="btn btn-success">Login</button>
             <button type="button" class="btn btn-success" (click)="register()">Register</button>
 

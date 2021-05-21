@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -9,47 +10,50 @@ import { DataService } from '../services/data.service';
 })
 export class LoginComponent implements OnInit {
 
-    stringInterpolation="Welcome To YES Bank"
-    accno=""
-    pswd=""
+  stringInterpolation = "Welcome To YES Bank"
+
+  loginForm = this.fb.group({
+    accno: ["", [Validators.required, Validators.minLength(4), Validators.pattern('[0-9]*')]],
+    pswd: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
+  })
 
 
-  constructor(private router:Router, private dataService:DataService) { }
+
+  constructor(private router: Router, private dataService: DataService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  accnoChange(event:any){
-    this.accno=event.target.value;
-    console.log(this.accno)
+
+  login() {
+
+    if (this.loginForm.valid){
+      alert("Form Valid")
+      var acno = this.loginForm.value.accno;
+      var pswd = this.loginForm.value.pswd;
+      console.log(acno)
+      console.log(pswd)
+
+      const result = this.dataService.login(acno, pswd)
+
+      if (result){
+        alert("Login Successful!");
+        this.router.navigateByUrl("dashboard");
+      }
+
+      else {
+        alert("Incorrect Data")
+      }
+    }
+    else {
+      alert("invalid form")
+    }
+
   }
 
-  pswdChange(event:any){
-    this.pswd=event.target.value;
-    console.log(this.pswd)
+
+  register() {
+    this.router.navigateByUrl("register")
   }
-
-
-  login(){
-    var acno= this.accno;
-    var pswd= this.pswd;
-    
-    const result = this.dataService.login(acno,pswd)
-
-  if(result){
-    alert("Login Successful!");
-    this.router.navigateByUrl("dashboard");
-  }
-
-  else{
-    alert("Incorrect Data")
-  }
-
-}
-
-
-register(){
-  this.router.navigateByUrl("register")
-}
 
 }
